@@ -1,0 +1,66 @@
+//leetcode 349
+import java.util.*;
+public class Solution {
+    public static int[] intersection(int[] nums1, int[] nums2) {
+        // for non sorted arrays - we can create hash set
+        // all elements of both arrays can be added to hash sets
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        for (int val : nums1){
+            set1.add(val);
+        }
+        for (int val : nums2){
+            set2.add(val);
+        }
+        //creating another set to store common values of both arrays
+        HashSet<Integer> mset = new HashSet<>();
+        // checking in set1 if value num found which is also found in set2 then adding it to mset
+        for(int num : set1){
+            if(set2.contains(num)){
+                mset.add(num);
+                }
+            }
+        // storing the mset values in different array ans
+        int j = 0, len=mset.size();
+        int[]ans = new int[len];
+        for(int i:mset){
+            ans[j]=i;
+            j++;
+        }
+        return ans;
+    }    
+    public static void main(String[]args){
+        int nums1[]={2,3,6,9,7,5};
+        int nums2[]={4,6,3,9,11};
+        System.out.println(intersection(nums1,nums2));
+    }
+}
+
+    // the simplest approach is to compare each element of one array with each element of second array
+    // for (int i =0; i<nums1.length; i++){
+    //     for(int j=0; j<nums2.length; j++){
+    //         if(nums1[i]==nums2[j]){
+    //             System.out.println(nums1[i]);
+    //         }
+    //     }
+    // }
+
+    // other approach is traveersing both the arrays simultaneously- for sorted arrays
+        // initializing two integers as zero to traverse through both arrays'
+        // int i = 0;
+        // int j = 0;
+        // while(i<nums1.length && j<nums2.length){ //here the length of both arrays need to be equal compusorily
+        //     if(nums1[i]==nums2[j]){
+        //         System.out.println(nums1[i]);
+        //         i++;
+        //         j++;
+        //     }
+        //     else if(nums1[i]>nums2[j]){
+        //         j++; //since if both are sorted arrays, then if both indices value dont match we need to move one indice forward and keep one constant
+        //     }
+        //     else{
+        //         i++;
+        //     }
+        // }
+
+    
